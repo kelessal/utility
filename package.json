@@ -10,6 +10,10 @@
   "keywords": [],
   "author": "Salih Keleş",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kelessal/utility"
+  },
   "dependencies": {
     "buffer": "^6.0.3",
     "nanoid": "^3.3.4",

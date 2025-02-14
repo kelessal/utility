@@ -8,7 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./output",
     "rootDir": "./src",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
   "files": ["src/main.ts"],
   "exclude": ["node_modules"]

@@ -1,18 +1,28 @@
 {
-  "name": "@salih/utility",
+  "name": "kelessal-utility",
   "version": "1.0.0",
   "description": "",
   "main": "./output/main.js",
   "types": "./output/main.d.ts",
+  "declaration": true,
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "utility",
+    "tools",
+    "javascript",
+    "typescript",
+    "library"
+  ],
   "author": "Salih Keleş",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/kelessal/utility"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "buffer": "^6.0.3",

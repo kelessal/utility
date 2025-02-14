@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./output",
+    "rootDir": "./src",
+    "sourceMap": true
+  },
+  "files": ["src/main.ts"],
+  "exclude": ["node_modules"]
+}

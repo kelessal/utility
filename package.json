@@ -1,6 +1,6 @@
 {
   "name": "kelessal-utility",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "./output/main.js",
   "types": "./output/main.d.ts",

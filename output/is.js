@@ -8,11 +8,11 @@ class Is {
         return Array.isArray(this.$u.get(item, path));
     }
     boolean(item, path) {
-        return typeof this.$u.get(item, path) === 'boolean';
+        return typeof this.$u.get(item, path) === "boolean";
     }
     empty(item, path) {
         item = this.$u.get(item, path);
-        if (this.nil(item) || item === '') {
+        if (this.nil(item) || item === "") {
             return true;
         }
         if (item instanceof Date) {
@@ -30,11 +30,12 @@ class Is {
         return false;
     }
     function(item, path) {
-        return this.$u.get(item, path) instanceof Function;
+        item = this.$u.get(item, path);
+        return typeof item === "function";
     }
     id(val, path) {
         val = this.$u.get(val, path);
-        return this.string(val) && val && val != 'new';
+        return this.string(val) && val && val != "new";
     }
     ip(val, path) {
         val = this.$u.get(val, path);
@@ -67,7 +68,7 @@ class Is {
     }
     object(A, path) {
         A = this.$u.get(A, path);
-        return typeof A === 'object' && A !== null && !Array.isArray(A) && !this.date(A);
+        return (typeof A === "object" && A !== null && !Array.isArray(A) && !this.date(A));
     }
     primitive(obj, path) {
         obj = this.$u.get(obj, path);
@@ -75,7 +76,7 @@ class Is {
     }
     string(val, path) {
         val = this.$u.get(val, path);
-        return typeof val === 'string' || val instanceof String;
+        return typeof val === "string" || val instanceof String;
     }
     alphaNumeric(val, path) {
         val = this.$u.get(val, path);

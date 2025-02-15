@@ -74,7 +74,7 @@ describe("As class", () => {
       GREEN = "green",
       BLUE = "blue",
     }
-    expect(as.enum("red", Colors)).toBe(Colors.RED);
-    expect(as.enum("yellow", Colors)).toBe(Colors.RED); // default to first enum value
+    expect(as.enum("red", Colors.RED)).toBe(Colors.RED);
+    expect(as.enum("yellow", Colors.RED)).toBe(Colors.RED); // default to first enum value
   });
 });

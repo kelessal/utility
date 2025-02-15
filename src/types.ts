@@ -125,7 +125,10 @@ export interface IAs {
    * @param enumObject - The enum object.
    * @returns The converted enum value.
    */
-  enum<T extends object>(value: string, enumObject: T): T[keyof T];
+  enum<T extends Record<string, string | number>>(
+    value: string,
+    defaultValue: T[keyof T]
+  ): T[keyof T];
 }
 export interface IIs {
   array(item: any, path?: string): boolean;

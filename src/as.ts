@@ -80,11 +80,14 @@ export default class As implements IAs {
    * @param defaultValue - The default enum value.
    * @returns The converted enum value.
    */
-  enum<T extends object>(value: string, enumObject: T): T[keyof T] {
-    const enumValues = Object.values(enumObject);
+  enum<T extends Record<string, string | number>>(
+    value: string,
+    defaultValue: T[keyof T]
+  ): T[keyof T] {
+    const enumValues = Object.values(defaultValue as unknown as T);
     return enumValues.includes(value as T[keyof T])
       ? (value as T[keyof T])
-      : enumObject[Object.keys(enumObject)[0] as keyof T];
+      : defaultValue;
   }
 
   /**

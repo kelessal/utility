@@ -205,8 +205,6 @@ class Utility {
                 a = this.get(a, property);
                 b = this.get(b, property);
             }
-            a = this.as.number(this.get(a, property));
-            b = this.as.number(this.get(b, property));
             return descending ? b - a : a - b;
         });
         return items;

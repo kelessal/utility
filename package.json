@@ -1,12 +1,13 @@
 {
   "name": "kelessal-utility",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./output/main.js",
   "types": "./output/main.d.ts",
   "declaration": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "keywords": [
     "utility",

@@ -38,22 +38,22 @@ class Tree {
             }
         }
     }
-    includes(children, item) {
+    deepIncludes(children, item) {
         if (this.$u.is.empty(children))
             return false;
         if (this.$u.includes(children, item))
             return true;
         return this.$u.as.array(children).some((p) => {
             const subChildren = this.$u.get(p, 'children');
-            return this.includes(subChildren, item);
+            return this.deepIncludes(subChildren, item);
         });
     }
-    find(tree, fn) {
+    findNode(tree, fn) {
         for (let item of this.$u.as.array(tree)) {
             if (fn(item)) {
                 return item;
             }
-            var found = this.find(item.children, fn);
+            var found = this.findNode(item.children, fn);
             if (found)
                 return found;
         }

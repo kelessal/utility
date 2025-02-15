@@ -51,7 +51,7 @@ class As {
             return item.toString();
         }
         else if (this.$u.is.object(item)) {
-            const itemId = this.string(item._id);
+            const itemId = this.string(item._id) || this.string(item.id);
             return this.$u.is.empty(itemId) ? (0, nanoid_1.nanoid)() : itemId;
         }
         return (0, nanoid_1.nanoid)();

@@ -78,11 +78,11 @@ class As {
      * @param defaultValue - The default enum value.
      * @returns The converted enum value.
      */
-    enum(value, enumObject) {
-        const enumValues = Object.values(enumObject);
+    enum(value, defaultValue) {
+        const enumValues = Object.values(defaultValue);
         return enumValues.includes(value)
             ? value
-            : enumObject[Object.keys(enumObject)[0]];
+            : defaultValue;
     }
     /**
      * Generates a unique ID.

@@ -1,17 +1,100 @@
 import { Buffer } from "buffer";
 export interface IAs {
+  /**
+   * Converts the input to an array.
+   * @param item - The item to convert.
+   * @returns The converted array.
+   */
   array(item: any): any[];
+
+  /**
+   * Converts the input to an asynchronous function.
+   * @param fn - The function to convert.
+   * @returns The converted asynchronous function.
+   */
   asyncFn(fn: string | Function): () => Promise<void>;
+
+  /**
+   * Converts the input to a boolean.
+   * @param item - The item to convert.
+   * @returns The converted boolean.
+   */
   boolean(item: any): boolean;
+
+  /**
+   * Converts a dash-case string to camelCase.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   camelcase(str: string): string;
+
+  /**
+   * Converts a camelCase string to dash-case.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   dashCase(str?: string): string;
+
+  /**
+   * Converts the input to a Date object.
+   * @param item - The item to convert.
+   * @returns The converted Date object.
+   */
   datetime(item: any): Date | null;
+
+  /**
+   * Generates a unique ID.
+   * @param item - The item to generate an ID for.
+   * @returns The generated ID.
+   */
   id(item?: any): string;
+
+  /**
+   * Converts the input to an integer.
+   * @param val - The value to convert.
+   * @returns The converted integer.
+   */
   integer(val: any): number;
+
+  /**
+   * Parses a JSON string.
+   * @param str - The JSON string to parse.
+   * @param options - The options for parsing.
+   * @returns The parsed object.
+   */
   json(str: string, options: { params?: object; continue?: boolean }): any;
+
+  /**
+   * Converts the input to a number.
+   * @param val - The value to convert.
+   * @param digit - The number of digits to round to.
+   * @param min - The minimum value.
+   * @param max - The maximum value.
+   * @returns The converted number.
+   */
   number(val: any, digit?: number, min?: number, max?: number): number;
+
+  /**
+   * Converts the input to an object.
+   * @param src - The source to convert.
+   * @returns The converted object.
+   */
   object(src: any): object;
+
+  /**
+   * Converts the input to a string.
+   * @param item - The item to convert.
+   * @returns The converted string.
+   */
   string(item: any): string;
+
+  /**
+   * Converts the input to a JSON string.
+   * @param input - The input to convert.
+   * @param options - The options for conversion.
+   * @param startTab - The starting tab level.
+   * @returns The converted JSON string.
+   */
   stringified(
     input: any,
     options: {
@@ -21,8 +104,28 @@ export interface IAs {
     },
     startTab: number
   ): string;
+
+  /**
+   * Capitalizes the first letter of a string.
+   * @param str - The string to capitalize.
+   * @returns The capitalized string.
+   */
   capitalFirst(str: string): string;
+
+  /**
+   * Converts a camelCase string to title case.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   titlecase(str: string): string;
+
+  /**
+   * Converts a string to an enum value.
+   * @param value - The string to convert.
+   * @param enumObject - The enum object.
+   * @returns The converted enum value.
+   */
+  enum<T extends object>(value: string, enumObject: T): T[keyof T];
 }
 export interface IIs {
   array(item: any, path?: string): boolean;

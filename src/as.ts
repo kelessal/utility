@@ -5,10 +5,22 @@ export default class As implements IAs {
   constructor(util: IUtility) {
     this.$u = util;
   }
+
+  /**
+   * Converts the input to an array.
+   * @param item - The item to convert.
+   * @returns The converted array.
+   */
   array(item: any): any[] {
     if (this.$u.is.nil(item)) return [];
     return this.$u.is.array(item) ? item : [item];
   }
+
+  /**
+   * Converts the input to an asynchronous function.
+   * @param fn - The function to convert.
+   * @returns The converted asynchronous function.
+   */
   asyncFn(fn: string | Function): () => Promise<void> {
     if (!this.$u.is.function(fn)) return async function () {};
     if (fn.constructor.name === "AsyncFunction")
@@ -17,32 +29,69 @@ export default class As implements IAs {
       return (fn as Function)(...arguments);
     };
   }
+
+  /**
+   * Converts the input to a boolean.
+   * @param item - The item to convert.
+   * @returns The converted boolean.
+   */
   boolean(item: any): boolean {
     return !!item;
   }
+
+  /**
+   * Converts a dash-case string to camelCase.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   camelcase(str: string): string {
     return str.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
     });
   }
+
+  /**
+   * Converts a camelCase string to dash-case.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   dashCase(str?: string): string {
     if (!this.$u.is.string(str)) {
       return "";
     }
     return (str as string).replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
   }
+
+  /**
+   * Converts the input to a Date object.
+   * @param item - The item to convert.
+   * @returns The converted Date object.
+   */
   datetime(item: any): Date | null {
     if (!this.$u.is.date(item)) return new Date();
     if (item instanceof Date) return item;
     if (this.$u.is.dateString(item)) return new Date(item);
     return new Date();
   }
-  enum<T extends object>(value: string, defaultValue: T[keyof T]): T[keyof T] {
-    const enumValues = Object.values(defaultValue as unknown as T);
+
+  /**
+   * Converts a string to an enum value.
+   * @param value - The string to convert.
+   * @param defaultValue - The default enum value.
+   * @returns The converted enum value.
+   */
+  enum<T extends object>(value: string, enumObject: T): T[keyof T] {
+    const enumValues = Object.values(enumObject);
     return enumValues.includes(value as T[keyof T])
       ? (value as T[keyof T])
-      : defaultValue;
+      : enumObject[Object.keys(enumObject)[0] as keyof T];
   }
+
+  /**
+   * Generates a unique ID.
+   * @param item - The item to generate an ID for.
+   * @returns The generated ID.
+   */
   id(item?: any): string {
     if (this.$u.is.empty(item)) return nanoid();
     if (this.$u.is.id(item)) return item;
@@ -54,10 +103,23 @@ export default class As implements IAs {
     }
     return nanoid();
   }
+
+  /**
+   * Converts the input to an integer.
+   * @param val - The value to convert.
+   * @returns The converted integer.
+   */
   integer(val: any): number {
     const result = this.number(val) || 0;
     return Math.round(result);
   }
+
+  /**
+   * Parses a JSON string.
+   * @param str - The JSON string to parse.
+   * @param options - The options for parsing.
+   * @returns The parsed object.
+   */
   json(
     str: string,
     options: { params?: object; continue?: boolean } = { continue: false }
@@ -76,6 +138,15 @@ export default class As implements IAs {
       if (!options.continue) throw e;
     }
   }
+
+  /**
+   * Converts the input to a number.
+   * @param val - The value to convert.
+   * @param digit - The number of digits to round to.
+   * @param min - The minimum value.
+   * @param max - The maximum value.
+   * @returns The converted number.
+   */
   number(val: any, digit?: number, min?: number, max?: number): number {
     if (val === true) val = 1;
     else if (val === false) val = 0;
@@ -93,9 +164,21 @@ export default class As implements IAs {
     var power = Math.pow(10, digit);
     return Math.round(result * power) / power;
   }
+
+  /**
+   * Converts the input to an object.
+   * @param src - The source to convert.
+   * @returns The converted object.
+   */
   object(src: any) {
     return this.$u.is.object(src) ? src : {};
   }
+
+  /**
+   * Converts the input to a string.
+   * @param item - The item to convert.
+   * @returns The converted string.
+   */
   string(item: any): string {
     if (this.$u.is.empty(item)) return "";
     if (this.$u.is.string(item)) return item;
@@ -117,6 +200,14 @@ export default class As implements IAs {
     }
     return item.toString();
   }
+
+  /**
+   * Converts the input to a JSON string.
+   * @param input - The input to convert.
+   * @param options - The options for conversion.
+   * @param startTab - The starting tab level.
+   * @returns The converted JSON string.
+   */
   stringified(
     input: any,
     options: {
@@ -207,9 +298,21 @@ export default class As implements IAs {
       return input.toString();
     }
   }
+
+  /**
+   * Capitalizes the first letter of a string.
+   * @param str - The string to capitalize.
+   * @returns The capitalized string.
+   */
   capitalFirst(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  /**
+   * Converts a camelCase string to title case.
+   * @param str - The string to convert.
+   * @returns The converted string.
+   */
   titlecase(str: string): string {
     const result = str.replace(/([a-z])(?=[A-Z])/g, "$1 ");
     return this.capitalFirst(result);

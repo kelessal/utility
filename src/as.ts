@@ -11,7 +11,7 @@ export default class As implements IAs {
    * @param item - The item to convert.
    * @returns The converted array.
    */
-  array(item: any): any[] {
+  array<T>(item: any): T[] {
     if (this.$u.is.nil(item)) return [];
     return this.$u.is.array(item) ? item : [item];
   }
@@ -173,7 +173,7 @@ export default class As implements IAs {
    * @param src - The source to convert.
    * @returns The converted object.
    */
-  object(src: any) {
+  object<T extends Record<string, any>>(src: any): T {
     return this.$u.is.object(src) ? src : {};
   }
 

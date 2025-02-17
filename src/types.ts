@@ -79,7 +79,7 @@ export interface IAs {
    * @param src - The source to convert.
    * @returns The converted object.
    */
-  object(src: any): object;
+  object<T extends Record<string, any>>(src: any): T;
 
   /**
    * Converts the input to a string.
